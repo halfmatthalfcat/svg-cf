@@ -15,7 +15,7 @@ which doesn't necessarily work in async contexts as you may override an existing
 ```javascript
 // Cloudflare Worker
 
-import { SVG, withWindow } from '@svg.js'
+import { SVG, withWindow } from '@halfmatthalfcat/svgals'
 
 export default {
   async fetch(req) {
