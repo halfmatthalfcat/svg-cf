@@ -73,13 +73,8 @@ declare module '@svgdotjs/svg.js' {
   function find(query: QuerySelector): List<Element>
   function findOne(query: QuerySelector): Element | null
 
-  function getWindow(): Window
-  function registerWindow(win: Window, doc: Document): void
-  function restoreWindow(): void
-  function saveWindow(): void
   function withWindow(
-    win: Window,
-    fn: (win: Window, doc: Document) => void
+    fn: () => Promise<void> | void
   ): void
 
   let utils: {

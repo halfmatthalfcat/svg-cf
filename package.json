@@ -1,8 +1,8 @@
 {
-  "name": "@svgdotjs/svg.js",
-  "version": "3.2.4",
+  "name": "@halfmatthalfcat/svgals",
+  "version": "0.0.1",
   "type": "module",
-  "description": "A lightweight library for manipulating and animating SVG.",
+  "description": "SVG.js + svgdom + AsyncLocalStorage",
   "url": "https://svgjs.dev/",
   "homepage": "https://svgjs.dev/",
   "keywords": [
@@ -11,7 +11,7 @@
     "graphics",
     "animation"
   ],
-  "author": "Wout Fierens <wout@mick-wout.com>",
+  "author": "Matt Oliver <mjo2089@gmail.com>",
   "main": "dist/svg.node.cjs",
   "unpkg": "dist/svg.min.js",
   "jsdelivr": "dist/svg.min.js",
@@ -54,6 +54,11 @@
       "name": "Jon Ege Ronnenberg",
       "email": "jon@svgjs.dev",
       "url": "https://keybase.io/dotnetcarpenter"
+    },
+    {
+      "name": "Matt Oliver",
+      "email": "mjo2089@gmail.com",
+      "url": "https://halfmatthalfcat.com"
     }
   ],
   "licenses": [
@@ -91,6 +96,9 @@
     "postpublish": "npm run zip",
     "checkTests": "node spec/checkForAllTests.js"
   },
+  "dependencies": {
+    "svgdom": "^0.1.19"
+  },
   "devDependencies": {
     "@babel/core": "^7.24.7",
     "@babel/eslint-parser": "^7.24.7",
@@ -120,7 +128,6 @@
     "prettier": "^3.3.2",
     "rollup": "^4.18.0",
     "rollup-plugin-filesize": "^10.0.0",
-    "svgdom": "^0.1.19",
     "typescript": "^5.4.5",
     "yargs": "^17.7.2"
   },

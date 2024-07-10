@@ -1,34 +1,54 @@
-# SVG.js
+# svgals
 
-[![Build Status](https://travis-ci.org/svgdotjs/svg.js.svg?branch=master)](https://travis-ci.org/svgdotjs/svg.js)
-[![Coverage Status](https://coveralls.io/repos/github/svgdotjs/svg.js/badge.svg?branch=master)](https://coveralls.io/github/svgdotjs/svg.js?branch=master)
-[![Cdnjs](https://img.shields.io/cdnjs/v/svg.js.svg)](https://cdnjs.com/libraries/svg.js)
-[![jsdelivr](https://badgen.net/jsdelivr/v/npm/@svgdotjs/svg.js)](https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js)
-[![Join the chat at https://gitter.im/svgdotjs/svg.js](https://badges.gitter.im/svgdotjs/svg.js.svg)](https://gitter.im/svgdotjs/svg.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Twitter](https://img.shields.io/badge/Twitter-@svg__js-green.svg)](https://twitter.com/svg_js)
+SVG.js + svgdom + AsyncLocalStorage
 
-**A lightweight library for manipulating and animating SVG, without any dependencies.**
+`svgals` is a combination of technologies to enable isolated SVG creation in Node-specific contexts only. Specifically, `svgals` seeks to
+create isolated `documents` to create SVGs between async contexts, such as Serverless handler requests. 
 
-SVG.js is licensed under the terms of the MIT License.
+Originally in SVG.js + svgdom, you needed to create a new svgdom document instance via `createSVGWindow` and then attach that window to a **global** instance (`registerWindow`),
+which doesn't necessarily work in async contexts as you may override an existing document.
+
+`svgals` leverages Node's `AsyncLocalStorage` construct to persist a `window` in any given async context so that each async context can operate on windows independently of each other.
+
+## Usage
+
+```javascript
+// Cloudflare Worker
+
+import { SVG, withWindow } from '@svg.js'
+
+export default {
+    async fetch(req) {
+        return withWindow(() => {
+            const svg = SVG().rect(100, 100).fill('#f06').svg();
+
+            return Response(svg, {
+                headers: {
+                    'Content-Type': 'image/svg+xml',
+                }
+            })
+        });
+    }
+}
+```
 
 ## Installation
 
-#### Npm:
+### Npm:
 
-`npm install @svgdotjs/svg.js`
+```sh
+npm install @halfmatthalfcat/svgals
+```
 
-#### Yarn:
+### Yarn:
 
-`yarn add @svgdotjs/svg.js`
-
-#### CDNs:
-
-[https://cdnjs.com/libraries/svg.js](https://cdnjs.com/libraries/svg.js)  
-[https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js](https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js)  
-[https://unpkg.com/@svgdotjs/svg.js](https://unpkg.com/@svgdotjs/svg.js)
+```sh
+yarn add @halfmatthalfcat/svgals
+```
 
 ## Documentation
 
-Check [svgjs.dev](https://svgjs.dev/docs/3.0/) to learn more.
+* [SVG.js](https://svgjs.dev/docs/3.0/)
+* [svgdom](https://github.com/svgdotjs/svgdom)
+* [AsyncLocalStorage](https://nodejs.org/api/async_context.html#class-asynclocalstorage)
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ulima.ums%40googlemail.com&lc=US&item_name=SVG.JS&currency_code=EUR&bn=PP-DonationsBF%3Abtn_donate_74x21.png%3ANonHostedGuest) or [![Sponsor](https://img.shields.io/badge/Sponsor-svg.js-green.svg)](https://github.com/sponsors/Fuzzyma)
