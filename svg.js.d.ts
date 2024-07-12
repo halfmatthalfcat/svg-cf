@@ -15,7 +15,7 @@ interface CSSStyleDeclarationWithVars extends CSSStyleDeclaration {
   [key: `--${string}`]: string
 }
 
-declare module '@halfmatthalfcat/svgals' {
+declare module '@halfmatthalfcat/svg-cf' {
   function SVG(): Svg
   /**
    * @param selectorOrHtml pass in a css selector or an html/svg string

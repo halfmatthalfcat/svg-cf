@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from 'node:async_hooks'
-import { createSVGWindow } from '@halfmatthalfcat/svgdom'
+import { createSVGWindow } from '@halfmatthalfcat/svgdom-cf'
 
 const storage = new AsyncLocalStorage()
 
