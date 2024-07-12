@@ -2,7 +2,7 @@ import Matrix from '../../types/Matrix.js'
 import Point from '../../types/Point.js'
 import Box from '../../types/Box.js'
 import { proportionalSize } from '../../utils/utils.js'
-import { getWindow } from '../../utils/window.js'
+import { globals } from '../../utils/window.js'
 
 export function dmove(dx, dy) {
   this.children().forEach((child) => {
@@ -18,7 +18,7 @@ export function dmove(dx, dy) {
       // Funnily enough the broken behavior would work for us but that breaks it in chrome
       // So we have to replicate the broken behavior of FF by just reading the attributes of the svg itself
       bbox =
-        child.node instanceof getWindow().SVGSVGElement
+        child.node instanceof globals.window.SVGSVGElement
           ? new Box(child.attr(['x', 'y', 'width', 'height']))
           : child.bbox()
     } catch (e) {

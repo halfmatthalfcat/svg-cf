@@ -1,9 +1,10 @@
-import pkg from '../package.json' with { type: 'json' }
 import babel from '@rollup/plugin-babel'
-import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import filesize from 'rollup-plugin-filesize'
+import resolve from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
+import filesize from 'rollup-plugin-filesize'
+import json from 'rollup-plugin-json'
+import pkg from '../package.json' assert { type: 'json' }
 
 const buildDate = Date()
 
@@ -123,6 +124,7 @@ const config = (node, min, esm = false) => ({
   plugins: [
     resolve({ browser: !node }),
     commonjs(),
+    json(),
     getBabelConfig(node),
     filesize(),
     !min

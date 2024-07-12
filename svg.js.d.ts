@@ -15,7 +15,7 @@ interface CSSStyleDeclarationWithVars extends CSSStyleDeclaration {
   [key: `--${string}`]: string
 }
 
-declare module '@svgdotjs/svg.js' {
+declare module '@halfmatthalfcat/svgals' {
   function SVG(): Svg
   /**
    * @param selectorOrHtml pass in a css selector or an html/svg string
@@ -73,9 +73,7 @@ declare module '@svgdotjs/svg.js' {
   function find(query: QuerySelector): List<Element>
   function findOne(query: QuerySelector): Element | null
 
-  function withWindow(
-    fn: () => Promise<void> | void
-  ): void
+  function withWindow<T>(fn: () => Promise<T> | T): T
 
   let utils: {
     map(array: any[], block: Function): any

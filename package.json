@@ -1,15 +1,14 @@
 {
-  "name": "@halfmatthalfcat/svgals",
-  "version": "0.0.1",
+  "name": "@halfmatthalfcat/svg-cf",
+  "version": "0.1.0",
   "type": "module",
-  "description": "SVG.js + svgdom + AsyncLocalStorage",
-  "url": "https://svgjs.dev/",
-  "homepage": "https://svgjs.dev/",
+  "description": "SVG.js + svgdom + AsyncLocalStorage for Cloudflare Workers",
   "keywords": [
     "svg",
     "vector",
     "graphics",
-    "animation"
+    "animation",
+    "cloudflare"
   ],
   "author": "Matt Oliver <mjo2089@gmail.com>",
   "main": "dist/svg.node.cjs",
@@ -43,12 +42,12 @@
     {
       "name": "Alex Ewerlöf",
       "email": "alex@userpixel.com",
-      "web": "http://www.ewerlof.name"
+      "url": "http://www.ewerlof.name"
     },
     {
       "name": "Ulrich-Matthias Schäfer",
       "email": "ulima.ums@googlemail.com",
-      "web": "https://svgdotjs.github.io/"
+      "url": "https://svgdotjs.github.io/"
     },
     {
       "name": "Jon Ege Ronnenberg",
@@ -69,14 +68,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/svgdotjs/svg.js.git"
+    "url": "https://github.com/halfmatthalfcat/svg-cf.git"
   },
-  "github": "https://github.com/svgdotjs/svg.js",
+  "github": "https://github.com/halfmatthalfcat/svg-cf",
   "license": "MIT",
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/Fuzzyma"
-  },
   "typings": "./svg.js.d.ts",
   "scripts": {
     "build": "npm run format && npm run rollup",
@@ -92,12 +87,13 @@
     "test:ci": "karma start .config/karma.conf.saucelabs.cjs",
     "test:svgdom": "node ./spec/runSVGDomTest.js || true",
     "zip": "zip -j dist/svg.js.zip -- LICENSE.txt README.md CHANGELOG.md dist/svg.js dist/svg.js.map dist/svg.min.js dist/svg.min.js.map dist/polyfills.js dist/polyfillsIE.js",
+    "postinstall": "npx patch-package --patch-dir node_modules/@halfmatthalfcat/svgdom-cf/patches",
     "prepublishOnly": "rm -rf ./dist && npm run build && npm run build:polyfills && npm test",
     "postpublish": "npm run zip",
     "checkTests": "node spec/checkForAllTests.js"
   },
   "dependencies": {
-    "svgdom": "^0.1.19"
+    "@halfmatthalfcat/svgdom-cf": "^0.2.7"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
@@ -128,8 +124,14 @@
     "prettier": "^3.3.2",
     "rollup": "^4.18.0",
     "rollup-plugin-filesize": "^10.0.0",
+    "rollup-plugin-json": "^4.0.0",
     "typescript": "^5.4.5",
     "yargs": "^17.7.2"
+  },
+  "resolutions": {
+    "strip-ansi": "6.0.1",
+    "string-width": "4.2.2",
+    "wrap-ansi": "7.0.0"
   },
   "browserslist": ">0.3%, last 2 version, not dead, not op_mini all"
 }

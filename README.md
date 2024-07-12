@@ -1,28 +1,29 @@
-# svgals
+# svg-cf
 
-SVG.js + svgdom + AsyncLocalStorage
+_SVG.js + svgdom + AsyncLocalStorage for usage in Cloudflare Workers_
 
-`svgals` is a combination of technologies to enable isolated SVG creation in Node-specific contexts only. Specifically, `svgals` seeks to
-create isolated `documents` to create SVGs between async contexts, such as Serverless handler requests.
+`svg-cf` is a combination of libraries and Node APIs to enable isolated SVG creation in Cloudflare Workers.
 
-Originally in SVG.js + svgdom, you needed to create a new svgdom document instance via `createSVGWindow` and then attach that window to a **global** instance (`registerWindow`),
-which doesn't necessarily work in async contexts as you may override an existing document.
+Originally in SVG.js + svgdom, you needed to create a new svgdom window/document instance via `createSVGWindow` and then attach that window to a **global, singleton** instance (`registerWindow`),
+which doesn't necessarily work in async contexts as you may have concurrent requests operating on the same document.
 
-`svgals` leverages Node's `AsyncLocalStorage` construct to persist a `window` in any given async context so that each async context can operate on windows independently of each other.
+`svg-cf` leverages Node's `AsyncLocalStorage` construct to persist a `window` in any given async context so that each async context can operate on windows independently of each other.
+
+`svg-cf` also utilizes `svgdom-cf`, a fork of svgdom that is compatible
+for running in Cloudflare Workers. Check out the [@halfmatthalfcat/svgdom-cf](https://github.com/halfmatthalfcat/svgdom-cf) repo for more info.
 
 ## Usage
 
-```javascript
-// Cloudflare Worker
-
-import { SVG, withWindow } from '@halfmatthalfcat/svgals'
+```js
+import { SVG, withWindow } from '@halfmatthalfcat/svg-cf'
 
 export default {
   async fetch(req) {
     return withWindow(() => {
-      const svg = SVG().rect(100, 100).fill('#f06').svg()
+      const svg = SVG().size(100, 100)
+      svg.rect(100, 100).fill('green')
 
-      return Response(svg, {
+      return Response(svg.svg(), {
         headers: {
           'Content-Type': 'image/svg+xml'
         }
@@ -37,17 +38,17 @@ export default {
 ### Npm:
 
 ```sh
-npm install @halfmatthalfcat/svgals
+npm install @halfmatthalfcat/svg-cf
 ```
 
 ### Yarn:
 
 ```sh
-yarn add @halfmatthalfcat/svgals
+yarn add @halfmatthalfcat/svg-cf
 ```
 
-## Documentation
+## Resources
 
 - [SVG.js](https://svgjs.dev/docs/3.0/)
-- [svgdom](https://github.com/svgdotjs/svgdom)
+- [svgdom-cf](https://github.com/halfmatthalfcat/svgdom-cf)
 - [AsyncLocalStorage](https://nodejs.org/api/async_context.html#class-asynclocalstorage)
