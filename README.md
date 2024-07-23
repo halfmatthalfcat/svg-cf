@@ -33,6 +33,19 @@ export default {
 }
 ```
 
+### Loading Fonts
+
+```js
+import { svgdom } from '@halfmatthalfcat/svg-cf'
+import fs from 'node:fs'
+
+svgdom.config.setFont(
+  'ariel', 
+  // Must be a buffer
+  fs.readFileSync('path/to/font.ttf')
+);
+```
+
 ## Installation
 
 ### Npm:
