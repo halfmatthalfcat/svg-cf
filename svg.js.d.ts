@@ -75,6 +75,14 @@ declare module '@halfmatthalfcat/svg-cf' {
 
   function withWindow<T>(fn: () => Promise<T> | T): T
 
+  let svgdom: {
+    config: {
+      setFont: (family: string, font: Buffer) => void
+      setFonts: (families: Record<string, Buffer>) => void
+      getFonts: () => Record<string, Buffer>
+    }
+  }
+
   let utils: {
     map(array: any[], block: Function): any
     filter(array: any[], block: Function): any

@@ -125,6 +125,7 @@ export { default as Text } from './elements/Text.js'
 export { default as TextPath } from './elements/TextPath.js'
 export { default as Tspan } from './elements/Tspan.js'
 export { default as Use } from './elements/Use.js'
+export * as svgdom from '@halfmatthalfcat/svgdom-cf'
 
 extend([Svg, Symbol, Image, Pattern, Marker], getMethodsFor('viewbox'))
 
