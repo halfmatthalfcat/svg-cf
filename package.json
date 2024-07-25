@@ -93,7 +93,7 @@
     "checkTests": "node spec/checkForAllTests.js"
   },
   "dependencies": {
-    "@halfmatthalfcat/svgdom-cf": "^0.2.7"
+    "@halfmatthalfcat/svgdom-cf": "^0.2.8"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",

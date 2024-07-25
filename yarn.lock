@@ -1021,10 +1021,10 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@halfmatthalfcat/svgdom-cf@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@halfmatthalfcat/svgdom-cf/-/svgdom-cf-0.2.7.tgz#c76f024eb82a033e80e1c89e469694782809919b"
-  integrity sha512-hKfdLXHGmorEvP4SIGkof531CAB8DLBZ7RX/2vwrb7Pg2OnhefCt7xHFX95BzGD8OquSvn70xhVKHW6UB7m0AQ==
+"@halfmatthalfcat/svgdom-cf@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@halfmatthalfcat/svgdom-cf/-/svgdom-cf-0.2.8.tgz#ef67f2970fae4e217a138648d7cf81d63b1419e1"
+  integrity sha512-ReIRDTMfVbuUmYs7L5s7ttkM6FMbV0Bb48TiSOQhDYC96Yn+govLzmjtyErvqYWj+hCei8GOCtP4PLe2gVdnqw==
   dependencies:
     buffer-image-size "^0.6.4"
     fontkit "^2.0.2"

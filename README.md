@@ -33,17 +33,38 @@ export default {
 }
 ```
 
-### Loading Fonts
+### Fonts
+
+#### Via Node
+
+Refer to the documentation in [svgdom-cf](https://github.com/halfmatthalfcat/svgdom-cf) regarding fonts.
 
 ```js
 import { svgdom } from '@halfmatthalfcat/svg-cf'
 import fs from 'node:fs'
 
-svgdom.config.setFont(
-  'ariel', 
-  // Must be a buffer
-  fs.readFileSync('path/to/font.ttf')
-);
+svgdom.config.setFonts(fs.readFileSync('path/to/font.ttf'));
+```
+
+#### Via Wrangler/CF
+
+Refer to the documentation in [svgdom-cf](https://github.com/halfmatthalfcat/svgdom-cf) regarding fonts.
+
+##### Wrangler Config
+
+```toml
+rules = [
+  { type = "Data", globs = ["**/*.ttf"], fallthrough = true }
+]
+```
+
+##### Worker Script
+
+```js
+import { svgdom } from '@halfmatthalfcat/svg-cf'
+import Ariel from './Ariel.ttf'
+
+svgdom.config.setFonts(Ariel);
 ```
 
 ## Installation
