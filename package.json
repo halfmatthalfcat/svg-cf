@@ -1,6 +1,6 @@
 {
   "name": "@halfmatthalfcat/svg-cf",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "type": "module",
   "description": "SVG.js + svgdom + AsyncLocalStorage for Cloudflare Workers",
   "keywords": [

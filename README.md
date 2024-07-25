@@ -43,7 +43,7 @@ Refer to the documentation in [svgdom-cf](https://github.com/halfmatthalfcat/svg
 import { svgdom } from '@halfmatthalfcat/svg-cf'
 import fs from 'node:fs'
 
-svgdom.config.setFonts(fs.readFileSync('path/to/font.ttf'));
+svgdom.config.setFonts(fs.readFileSync('path/to/font.ttf'))
 ```
 
 #### Via Wrangler/CF
@@ -64,7 +64,7 @@ rules = [
 import { svgdom } from '@halfmatthalfcat/svg-cf'
 import Ariel from './Ariel.ttf'
 
-svgdom.config.setFonts(Ariel);
+svgdom.config.setFonts(Ariel)
 ```
 
 ## Installation

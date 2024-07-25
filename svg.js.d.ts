@@ -77,9 +77,9 @@ declare module '@halfmatthalfcat/svg-cf' {
 
   let svgdom: {
     config: {
-      setFont: (family: string, font: Buffer) => void
-      setFonts: (families: Record<string, Buffer>) => void
+      setFonts: (...fonts: Array<Buffer>) => void
       getFonts: () => Record<string, Buffer>
+      getPostscriptName: (font: Buffer) => string
     }
   }
 
